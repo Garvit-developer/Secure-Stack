@@ -2,7 +2,7 @@ import React from 'react'
 import { useRef, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaExternalLinkAlt } from "react-icons/fa";
 const Manager = ({ darkMode: darkModeProp }) => {
   const passwordRef = useRef()
   const [form, setform] = useState({ site: "", username: "", password: "", category: "General" })
@@ -10,6 +10,7 @@ const Manager = ({ darkMode: darkModeProp }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [showPasswordGenerator, setShowPasswordGenerator] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [passwordOptions, setPasswordOptions] = useState({
     length: 16,
     uppercase: true,
@@ -292,27 +293,21 @@ const Manager = ({ darkMode: darkModeProp }) => {
                   ref={passwordRef}
                   value={form.password}
                   onChange={handleChange}
-                  placeholder='Enter Password'
-                  className='w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all'
-                  type="password"
+                  placeholder="Enter Password"
+                  className="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
                 />
                 <span
-                  className='absolute right-2 top-2 cursor-pointer'
-                  onClick={() => {
-                    if (passwordRef.current.type === "password") {
-                      passwordRef.current.type = "text"
-                    } else {
-                      passwordRef.current.type = "password"
-                    }
-                  }}
+                  className="absolute right-3 top-2.5 cursor-pointer text-gray-500 hover:text-green-500 transition-colors"
+                  onClick={() => setShowPassword(!showPassword)}
                 >
-                  <lord-icon
-                    src="https://cdn.lordicon.com/iykgtsbt.json"
-                    trigger="hover"
-                    style={{ width: "24px", height: "24px" }}
-                  ></lord-icon>
+                  {showPassword ? (
+                    <FaEyeSlash size={20} />
+                  ) : (
+                    <FaEye size={20} />
+                  )}
                 </span>
               </div>
 
@@ -323,14 +318,14 @@ const Manager = ({ darkMode: darkModeProp }) => {
                     <div className={`flex-1 h-2 rounded-full bg-gray-200 dark:bg-gray-700`}>
                       <div
                         className={`h-2 rounded-full transition-all ${passwordStrength.color === "red" ? "bg-red-500 w-1/3" :
-                            passwordStrength.color === "yellow" ? "bg-yellow-500 w-2/3" :
-                              "bg-green-500 w-full"
+                          passwordStrength.color === "yellow" ? "bg-yellow-500 w-2/3" :
+                            "bg-green-500 w-full"
                           }`}
                       />
                     </div>
                     <span className={`text-sm font-medium ${passwordStrength.color === "red" ? "text-red-500" :
-                        passwordStrength.color === "yellow" ? "text-yellow-500" :
-                          "text-green-500"
+                      passwordStrength.color === "yellow" ? "text-yellow-500" :
+                        "text-green-500"
                       }`}>
                       {passwordStrength.label}
                     </span>
@@ -493,8 +488,8 @@ const Manager = ({ darkMode: darkModeProp }) => {
                         </span>
                       </div>
                       <div className={`w-3 h-3 rounded-full ${strength.color === "red" ? "bg-red-500" :
-                          strength.color === "yellow" ? "bg-yellow-500" :
-                            "bg-green-500"
+                        strength.color === "yellow" ? "bg-yellow-500" :
+                          "bg-green-500"
                         }`} title={strength.label} />
                     </div>
 
@@ -502,7 +497,7 @@ const Manager = ({ darkMode: darkModeProp }) => {
                       <div>
                         <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Username</div>
                         <div className="flex items-center gap-2">
-                          <span className="text-gray-700 dark:text-gray-300 truncate flex-1">{item.username}</span>
+                          <span className="text-gray-200 dark:text-gray-300 truncate flex-1">{item.username}</span>
                           <button
                             onClick={() => copyText(item.username)}
                             className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
@@ -511,6 +506,7 @@ const Manager = ({ darkMode: darkModeProp }) => {
                             <lord-icon
                               src="https://cdn.lordicon.com/iykgtsbt.json"
                               trigger="hover"
+                          colors="primary:#9ca3af"
                               style={{ width: "20px", height: "20px" }}
                             ></lord-icon>
                           </button>
@@ -539,43 +535,53 @@ const Manager = ({ darkMode: darkModeProp }) => {
                       </div>
                     </div>
 
-                    <div className="flex justify-end gap-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="flex justify-end gap-2 pt-4 items-center border-t text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700">
+                      {/* Visit Site */}
                       <a
-                        href={item.site.startsWith('http') ? item.site : `https://${item.site}`}
+                        href={item.site.startsWith("http") ? item.site : `https://${item.site}`}
                         target="_blank"
                         rel="noreferrer"
                         className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
                         title="Visit site"
                       >
-                        <lord-icon
-                          src="https://cdn.lordicon.com/iykgtsbt.json"
+                        <lord-icon    
+                        src="https://cdn.lordicon.com/erxuunyq.json"
                           trigger="hover"
+                          colors="primary:#9ca3af"
                           style={{ width: "20px", height: "20px" }}
                         ></lord-icon>
                       </a>
+
+                      {/* Edit Password */}
                       <button
                         onClick={() => editPassword(item.id)}
-                        className="p-2 hover:bg-blue-100 dark:hover:bg-blue-900 rounded transition-colors"
+                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
                         title="Edit password"
                       >
                         <lord-icon
                           src="https://cdn.lordicon.com/gwlusjdu.json"
                           trigger="hover"
+                          colors="primary:#9ca3af"
                           style={{ width: "20px", height: "20px" }}
                         ></lord-icon>
                       </button>
+
+                      {/* Delete Password */}
                       <button
                         onClick={() => deletePassword(item.id)}
-                        className="p-2 hover:bg-red-100 dark:hover:bg-red-900 rounded transition-colors"
+                        className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
                         title="Delete password"
                       >
                         <lord-icon
                           src="https://cdn.lordicon.com/skkahier.json"
                           trigger="hover"
+                          colors="primary:#9ca3af"
                           style={{ width: "20px", height: "20px" }}
                         ></lord-icon>
                       </button>
                     </div>
+
+
                   </div>
                 )
               })}
