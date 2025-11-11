@@ -9,9 +9,15 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       <div className="mycontainer flex justify-between items-center py-5 h-14 px-4 md:px-8 relative">
         {/* Logo */}
         <Link to="/" className="logo font-bold text-white text-2xl px-4 md:px-10 hover:opacity-80 transition-opacity">
-          <span className="text-green-500">&lt;</span>
-          <span>Pass</span>
-          <span className="text-green-500">OP/&gt;</span>
+          <div className="flex justify-items-start items-center gap-2">
+            <img src="/favicon.ico" alt="" className="w-8 h-8" />
+          <div>
+          {/* <span className="text-green-500">&lt;</span> */}
+          <span>Secure {""}</span>
+          <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">Stack</span>
+          </div>
+          </div>
+
         </Link>
 
         {/* Desktop Navigation */}
@@ -131,11 +137,11 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 {darkMode ? "☀️" : "🌙"}
               </button>
               <button
-                className="text-white bg-green-700 rounded-full flex justify-center items-center px-4 py-2 ring-white ring-1 hover:bg-green-600 transition-all"
+                className="text-white bg-green-700 rounded-full flex justify-center items-center ring-white ring-1 hover:bg-green-600 transition-all"
                 onClick={() => setMenuOpen(false)}
               >
                 <img
-                  className="invert w-6 mr-2"
+                  className="invert w-4 h-4 mr-2"
                   src="/icons/github.svg"
                   alt="github logo"
                 />

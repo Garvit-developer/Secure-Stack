@@ -192,8 +192,8 @@ const Manager = ({ darkMode: darkModeProp }) => {
         <div className="text-center mb-8">
           <h1 className='text-5xl font-bold mb-2'>
             <span className='text-green-500'>&lt;</span>
-            <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">Pass</span>
-            <span className='text-green-500'>OP/&gt;</span>
+            <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">Secure {""}</span>
+            <span className='text-green-500'>Stack/&gt;</span>
           </h1>
           <p className='text-green-900 dark:text-green-300 text-lg'>Your own Password Manager</p>
         </div>

@@ -85,11 +85,6 @@ const About = () => {
           </ul>
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
-            Created with ❤️ by Garvit Dani
-          </p>
-        </div>
       </div>
     </div>
   )
