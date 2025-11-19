@@ -47,7 +47,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-xl shadow-lg p-8 text-white">
+        <div className="bg-gradient-to-r from-green-900 to-blue-900 rounded-xl shadow-lg p-8 text-white">
           <h2 className="text-3xl font-bold mb-4">Features</h2>
           <ul className="space-y-3 text-lg">
             <li className="flex items-center gap-3">
