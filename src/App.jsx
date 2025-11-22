@@ -71,7 +71,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300 flex flex-col">
         <Navbar darkMode={darkMode} setDarkMode={toggleDarkMode} />
         <Routes>
           <Route path="/" element={<Manager darkMode={darkMode} />} />

@@ -1,156 +1,117 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { FaGithub, FaMoon, FaSun, FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    { name: "Settings", path: "/settings" },
+  ];
+
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="bg-slate-800 dark:bg-gray-900 text-white shadow-lg"> 
-      <div className="mycontainer flex justify-between items-center py-5 h-14 px-4 md:px-8 relative">
-        {/* Logo */}
-        <Link to="/" className="logo font-bold text-white text-2xl px-4 md:px-10 hover:opacity-80 transition-opacity">
-          <div className="flex justify-items-start items-center gap-2">
-            <img src="/favicon.ico" alt="" className="w-8 h-8" />
-          <div>
-          {/* <span className="text-green-500">&lt;</span> */}
-          <span>Secure {""}</span>
-          <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">Stack</span>
-          </div>
-          </div>
+    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="bg-gradient-to-tr from-indigo-500 to-purple-500 p-2 rounded-lg shadow-lg group-hover:shadow-indigo-500/30 transition-all duration-300">
+              <span className="text-white font-bold text-xl tracking-tighter">SS</span>
+            </div>
+            <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300">
+              SecureStack
+            </span>
+          </Link>
 
-        </Link>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
+            <ul className="flex gap-6">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className={`text-sm font-medium transition-colors duration-200 ${isActive(link.path)
+                      ? "text-indigo-600 dark:text-indigo-400"
+                      : "text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400"
+                      }`}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-6 text-lg">
-          <li>
-            <Link to="/" className="hover:text-green-400 transition-colors">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="hover:text-green-400 transition-colors">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="hover:text-green-400 transition-colors">
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link to="/settings" className="hover:text-green-400 transition-colors">
-              Settings
-            </Link>
-          </li>
-        </ul>
+            <div className="flex items-center gap-3 pl-6 border-l border-slate-200 dark:border-slate-700">
 
-        {/* Dark Mode Toggle & GitHub Button */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={setDarkMode}
-            className="p-2 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-700 transition-colors"
-            title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {darkMode ? "☀️" : "🌙"}
-          </button>
-          <button className="text-white bg-green-700 my-5 mx-2 rounded-full justify-between items-center ring-white ring-1 hover:bg-green-600 transition-all flex">
-            <img
-              className="invert w-10 p-1"
-              src="/icons/github.svg"
-              alt="github logo"
-            />
-            <span className="font-bold px-2">GitHub</span>
-          </button>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <div
-          className="md:hidden cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            {menuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        {menuOpen && (
-          <div className="absolute top-14 left-0 w-full bg-slate-800 dark:bg-gray-900 border-t border-slate-700 flex flex-col items-center py-4 z-50 animate-slideDown">
-            <Link
-              to="/"
-              className="py-2 w-full text-center hover:bg-slate-700 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="py-2 w-full text-center hover:bg-slate-700 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              to="/contact"
-              className="py-2 w-full text-center hover:bg-slate-700 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </Link>
-            <Link
-              to="/settings"
-              className="py-2 w-full text-center hover:bg-slate-700 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              Settings
-            </Link>
-            <div className="flex items-center gap-4 mt-3">
-              <button
-                onClick={() => {
-                  setDarkMode();
-                  setMenuOpen(false);
-                }}
-                className="p-2 rounded-lg hover:bg-slate-700 transition-colors text-2xl"
-                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              <a
+                href="https://github.com/Garvit-developer/Secure-Stack"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-medium hover:opacity-90 transition-opacity"
               >
-                {darkMode ? "☀️" : "🌙"}
-              </button>
-              <button
-                className="text-white bg-green-700 rounded-full flex justify-center items-center ring-white ring-1 hover:bg-green-600 transition-all"
-                onClick={() => setMenuOpen(false)}
-              >
-                <img
-                  className="invert w-4 h-4 mr-2"
-                  src="/icons/github.svg"
-                  alt="github logo"
-                />
-                <span className="font-bold">GitHub</span>
-              </button>
+                <FaGithub size={18} />
+                <span>GitHub</span>
+              </a>
             </div>
           </div>
-        )}
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center gap-4">
+            <button
+              onClick={setDarkMode}
+              className="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-all"
+            >
+              {darkMode ? <FaSun size={18} /> : <FaMoon size={18} />}
+            </button>
+
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+            >
+              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden absolute top-16 left-0 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl animate-in slide-in-from-top-5 duration-200">
+          <div className="px-4 py-6 space-y-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={() => setMenuOpen(false)}
+                className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${isActive(link.path)
+                  ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
+                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
+                  }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+              <a
+                href="https://github.com/Garvit-developer/Secure-Stack"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium"
+              >
+                <FaGithub size={20} />
+                <span>Star on GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

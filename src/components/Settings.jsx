@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { toast } from 'react-toastify'
 
 const Settings = ({ darkMode, setDarkMode }) => {
@@ -54,7 +54,7 @@ const Settings = ({ darkMode, setDarkMode }) => {
             autoClose: 2000,
           })
         }
-      } catch (error) {
+      } catch {
         toast.error('Error reading file. Please check the format.', {
           autoClose: 2000,
         })
@@ -97,14 +97,12 @@ const Settings = ({ darkMode, setDarkMode }) => {
               </div>
               <button
                 onClick={handleDarkModeToggle}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  darkMode ? 'bg-green-500' : 'bg-gray-300'
-                }`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${darkMode ? 'bg-green-500' : 'bg-gray-300'
+                  }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    darkMode ? 'translate-x-6' : 'translate-x-1'
-                  }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${darkMode ? 'translate-x-6' : 'translate-x-1'
+                    }`}
                 />
               </button>
             </div>
@@ -113,7 +111,7 @@ const Settings = ({ darkMode, setDarkMode }) => {
           {/* Data Management */}
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Data Management</h2>
-            
+
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-300">Export Passwords</h3>
