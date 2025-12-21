@@ -12,7 +12,7 @@
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-white transition-colors duration-300;
+  @apply bg-[#F2F4F8] text-slate-900 dark:bg-slate-900 dark:text-white transition-colors duration-300;
 }
 
 /* Custom Scrollbar */

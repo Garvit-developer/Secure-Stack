@@ -29,9 +29,9 @@ function App() {
     } catch (error) {
       console.error('Error loading dark mode preference:', error)
     }
-    // Ensure dark class is removed if no preference found
-    document.documentElement.classList.remove('dark')
-    return false
+    // Default to dark mode if no preference found
+    document.documentElement.classList.add('dark')
+    return true
   })
 
   // Apply dark mode class to document element whenever darkMode state changes
@@ -71,7 +71,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300 flex flex-col">
+      <div className="min-h-screen bg-[#F2F4F8] dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300 flex flex-col">
         <Navbar darkMode={darkMode} setDarkMode={toggleDarkMode} />
         <Routes>
           <Route path="/" element={<Manager darkMode={darkMode} />} />

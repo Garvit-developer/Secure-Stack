@@ -2,15 +2,15 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div className="min-h-[82.7vh] py-8 px-4 md:px-8 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <div className="min-h-[82.7vh] py-8 px-4 md:px-8 bg-[#F2F4F8] dark:bg-slate-900 transition-colors duration-300">
       <div className="max-w-5xl mx-auto space-y-16">
 
         {/* Hero Section */}
         <div className="text-center space-y-6">
-         
+
           <h1 className="text-4xl bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent md:text-5xl font-bold tracking-tight leading-tight">
             Our Vision is Digital Security <br />
-         
+
           </h1>
           <p className="text-lg font-medium text-slate-600 dark:text-slate-400 leading-relaxed max-w-5xl mx-auto">
             We believe that privacy isn't a feature—it's a fundamental right.
