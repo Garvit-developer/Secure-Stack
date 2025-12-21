@@ -5,6 +5,8 @@
   --font-sans: 'Inter', sans-serif;
 }
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   font-family: 'Inter', sans-serif;
 }

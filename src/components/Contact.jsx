@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
+import emailjs from '@emailjs/browser'
+import { useRef } from 'react'
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    from_name: '',
+    from_email: '',
     message: ''
   })
 
@@ -14,11 +17,25 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (formData.name && formData.email && formData.message) {
-      toast.success('Thank you for your message! We\'ll get back to you soon.', {
-        autoClose: 3000,
-      })
-      setFormData({ name: '', email: '', message: '' })
+
+    if (formData.from_name && formData.from_email && formData.message) {
+      const toastId = toast.loading("Sending message...")
+
+      emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID,
+        form.current,
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
+      ).then(() => {
+        toast.update(toastId, { render: "Message sent!", type: "success", isLoading: false, autoClose: 3000 });
+        setFormData({ from_name: '', from_email: '', message: '' })
+      }).catch((error) => {
+        console.error('FAILED...', error.text);
+        toast.update(toastId, { render: "Failed to send message.", type: "error", isLoading: false, autoClose: 3000 });
+      });
+
     } else {
       toast.error('Please fill in all fields', {
         autoClose: 2000,
@@ -39,7 +56,7 @@ const Contact = () => {
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Name
@@ -47,8 +64,8 @@ const Contact = () => {
               <input
                 type="text"
                 id="name"
-                name="name"
-                value={formData.name}
+                name="from_name"
+                value={formData.from_name}
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 placeholder="Your name"
@@ -63,8 +80,8 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
-                name="email"
-                value={formData.email}
+                name="from_email"
+                value={formData.from_email}
                 onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                 placeholder="your.email@example.com"
@@ -97,24 +114,17 @@ const Contact = () => {
           </form>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center">
-            <div className="text-3xl mb-3">📧</div>
-            <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">Email</h3>
-            <p className="text-gray-600 dark:text-gray-300">contact@passop.com</p>
+        <div className="mt-6 grid gap-6">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg  p-3 text-center">
+            <div className='flex gap-3 justify-center items-center'>
+
+              <div className="text-3xl mb-1">📧</div>
+              <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">Email</h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300">garvitdani@gmail.com</p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center">
-            <div className="text-3xl mb-3">💬</div>
-            <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">Support</h3>
-            <p className="text-gray-600 dark:text-gray-300">Available 24/7</p>
-          </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center">
-            <div className="text-3xl mb-3">🚀</div>
-            <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-white">Response Time</h3>
-            <p className="text-gray-600 dark:text-gray-300">Within 24 hours</p>
-          </div>
         </div>
       </div>
     </div>

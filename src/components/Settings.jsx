@@ -75,14 +75,14 @@ const Settings = ({ darkMode, setDarkMode }) => {
   }
 
   return (
-    <div className="min-h-[82.7vh] p-4 md:p-8">
+    <div className="min-h-[82.7vh] p-2 md:p-4">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
+        <div className="text-center mb-6">
+          <h1 className="text-5xl font-bold py-1 mb-4 bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
             Settings
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
-            Customize your PassOP experience
+            Customize your Secure Stack experience
           </p>
         </div>
 
@@ -157,18 +157,8 @@ const Settings = ({ darkMode, setDarkMode }) => {
             </div>
           </div>
 
-          {/* App Info */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">About PassOP</h2>
-            <div className="space-y-2 text-gray-600 dark:text-gray-300">
-              <p><strong>Version:</strong> 2.0.0</p>
-              <p><strong>Created by:</strong> Garvit Dani</p>
-              <p><strong>Storage:</strong> Local (Browser)</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-                All your passwords are stored locally in your browser. No data is sent to any server.
-              </p>
-            </div>
-          </div>
+       
+          
         </div>
       </div>
     </div>

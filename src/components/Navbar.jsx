@@ -21,9 +21,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="bg-gradient-to-tr from-indigo-500 to-purple-500 p-2 rounded-lg shadow-lg group-hover:shadow-indigo-500/30 transition-all duration-300">
-              <span className="text-white font-bold text-xl tracking-tighter">SS</span>
-            </div>
+            <img src="/favicon.ico" className="w-9 h-9" alt="Logo img" />
             <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300">
               SecureStack
             </span>
@@ -50,6 +48,15 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             <div className="flex items-center gap-3 pl-6 border-l border-slate-200 dark:border-slate-700">
 
 
+
+              <button
+                onClick={() => setDarkMode()}
+                className="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-all mr-2"
+                aria-label="Toggle Dark Mode"
+              >
+                {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
+              </button>
+
               <a
                 href="https://github.com/Garvit-developer/Secure-Stack"
                 target="_blank"
@@ -65,7 +72,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
             <button
-              onClick={setDarkMode}
+              onClick={() => setDarkMode()}
               className="p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-all"
             >
               {darkMode ? <FaSun size={18} /> : <FaMoon size={18} />}

@@ -205,18 +205,18 @@ const Manager = () => {
   return (
     <div className="min-h-screen pb-20">
       {/* ---------------- Header Section ---------------- */}
-      <div className="bg-indigo-600 dark:bg-slate-900 pb-32 pt-12 px-4 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+      <div className="bg-indigo-600 dark:bg-slate-900 pb-32 pt-5 px-4 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto  text-center">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent mb-2 py-1 tracking-tight">
             Secure Your Digital Life
           </h1>
-          <p className="text-indigo-100 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-indigo-100 text-lg md:text-xl max-w-3xl mx-auto">
             A modern, secure, and elegant way to manage all your passwords in one place.
           </p>
 
           {/* Stats Cards */}
           {passwordArray.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 max-w-4xl mx-auto">
               <StatCard label="Total Passwords" value={stats.total} icon={<FaShieldAlt />} />
               <StatCard label="Weak" value={stats.weak} color="text-red-400" />
               <StatCard label="Medium" value={stats.medium} color="text-yellow-400" />

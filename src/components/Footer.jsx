@@ -3,12 +3,10 @@ import { FaHeart } from 'react-icons/fa'
 
 const Footer = () => {
     return (
-        <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 mt-auto">
+        <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-2 mt-auto">
             <div className="max-w-7xl mx-auto px-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                    <div className="bg-gradient-to-tr from-indigo-500 to-purple-500 p-1.5 rounded-md">
-                        <span className="text-white font-bold text-sm tracking-tighter">SS</span>
-                    </div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                    <img src="/favicon.ico" className="w-7 h-7" alt="Logo img" />
                     <span className="font-bold text-lg text-slate-700 dark:text-slate-200">
                         SecureStack
                     </span>
